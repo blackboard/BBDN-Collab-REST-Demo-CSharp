@@ -22,7 +22,7 @@
 
         public RecurrenceRule recurrenceRule { get; set; }
 
-        public string occurenceType { get; set; }
+        public string occurrenceType { get; set; }
 
         public bool canPostMessage { get; set; }
 
@@ -54,18 +54,27 @@
 
         public bool canShareAudio { get; set; }
 
-        public override string ToString()
-        {
-            return ("{  \"guestUrl\" : \"" + guestUrl + "\"," +
-                        "\"name\" : \"" + name + "\"," +
-                        "\"guestRole\" : \"" + guestRole + "\"," +
-                        "\"occurenceType\" : \"" + occurenceType + "\"," +
-                        "\"description\" : \"" + description + "\"," +
-                        "\"recurrenceRule\" : \"" + recurrenceRule.ToString() + "\"," +
-                        "\"startTime\" : \"" + startTime.ToString() + "\"," +
-                        "\"endTime\" : \"" + endTime.ToString() + "\"     }");
-
-        }
+        public override string ToString() => "{  \"guestUrl\" : \""
+                                             + guestUrl
+                                             + "\","
+                                             + "\"name\" : \""
+                                             + name
+                                             + "\","
+                                             + "\"guestRole\" : \""
+                                             + guestRole
+                                             + "\","
+                                             + "\"occurrenceType\" : \""
+                                             + occurrenceType
+                                             + "\","
+                                             + "\"description\" : \""
+                                             + description
+                                             + "\","
+                                             + "\"startTime\" : \""
+                                             + startTime.ToString()
+                                             + "\","
+                                             + "\"endTime\" : \""
+                                             + endTime.ToString()
+                                             + "\"     }";
 
     }
 }

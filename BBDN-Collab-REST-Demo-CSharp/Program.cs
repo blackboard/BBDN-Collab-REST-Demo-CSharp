@@ -52,7 +52,7 @@ namespace CollabRestDemo
             User user = await userService.CreateUser(newUser);
             Console.WriteLine("User Created: " + user.ToString());
 
-            SessionService sessionService = new SessionService(token);
+            var sessionService = new SessionService(token);
 
             Session newSession = SessionHelper.GenerateObject();
             Session session = await sessionService.CreateSession(newSession);

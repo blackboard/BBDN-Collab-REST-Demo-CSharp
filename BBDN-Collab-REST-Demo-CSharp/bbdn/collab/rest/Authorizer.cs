@@ -4,6 +4,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using CollabRestDemo.bbdn.collab.rest.models;
+using JWT;
+using JWT.Builder;
+using JWT.Algorithms;
 
 namespace CollabRestDemo.bbdn.collab.rest
 {
@@ -11,30 +14,26 @@ namespace CollabRestDemo.bbdn.collab.rest
     {
         HttpClient client;
 
-        private string CreateToken(string secret, double exp)
+        private string CreateToken(string secret)
         {
             secret = secret ?? "";
 
-            var payload = new Dictionary<string, object>()
-            {
-                { "iss", Constants.KEY },
-                { "sub", Constants.KEY },
-                { "exp", exp }
-            };
+            var token = new JwtBuilder()
+                .WithAlgorithm(new HMACSHA256Algorithm()) // symmetric
+                .WithSecret(secret)
+                .AddClaim("iss", Constants.KEY)
+                .AddClaim("sub", Constants.KEY)
+                .AddClaim("exp", DateTimeOffset.UtcNow.AddMinutes(5).ToUnixTimeSeconds())
+                .Encode();
 
-            string token = JWT.JsonWebToken.Encode(payload, secret, JWT.JwtHashAlgorithm.HS256);
             Console.WriteLine(token);
-            return (token);
+
+            return token;
         }
 
         public async Task<Token> Authorize()
         {
-            var unixEpoch = new System.DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            var exp = Math.Round((System.DateTime.UtcNow - unixEpoch).TotalSeconds + 5);
-
-
-            var assertion = CreateToken(Constants.SECRET, exp);
-
+            var assertion = CreateToken(Constants.SECRET);
 
             client = new HttpClient();
 

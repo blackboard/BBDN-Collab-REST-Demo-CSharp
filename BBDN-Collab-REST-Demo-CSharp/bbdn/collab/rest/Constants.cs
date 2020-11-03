@@ -8,9 +8,9 @@ namespace CollabRestDemo.bbdn.collab.rest
 {
     public class Constants
     {
-        public static string HOSTNAME = "https://xx-csa.bbcollab.com";
-        public static string KEY = "scott_testing_key";
-        public static string SECRET = "eyJpc3MiOiJiYkNvbGxhYkFwaSIsInN1";
+        public static string HOSTNAME = "https://techpreview.bbcollab.com/collab/api/csa/";
+        public static string KEY = "YOUR_KEY";
+        public static string SECRET = "YOUR_SECRET";
 
         public static string AUTH_PATH = "/token";
 

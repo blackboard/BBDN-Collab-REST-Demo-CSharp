@@ -41,7 +41,8 @@ namespace CollabRestDemo.bbdn.collab.rest.services
                 }
                 else
                 {
-                    Debug.WriteLine(@"              Creation Failed: " + response.StatusCode + " " + response.ReasonPhrase +" " + response.Content.ToString());
+                    string content = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine(@"              Creation Failed: " + response.StatusCode + " " + response.ReasonPhrase +" " + content);
                 }
 
             }

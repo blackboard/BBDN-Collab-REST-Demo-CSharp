@@ -1,4 +1,5 @@
 ﻿using CollabRestDemo.bbdn.collab.rest.models;
+using System;
 
 namespace CollabRestDemo.bbdn.collab.rest.helpers
 {
@@ -12,6 +13,8 @@ namespace CollabRestDemo.bbdn.collab.rest.helpers
             session.guestRole = "presenter";
             session.openChair = true;
             session.sessionExitUrl = "https://community.blackboard.com/community/developers";
+            session.startTime = DateTime.UtcNow;
+            session.endTime = DateTime.UtcNow.AddMonths(1);
             session.mustBeSupervised = true;
             session.noEndDate = true;
             session.description = "Collab API demo room created with C#";
@@ -28,7 +31,7 @@ namespace CollabRestDemo.bbdn.collab.rest.helpers
             session.canShareAudio = true;
             session.boundaryTime = "";
             session.createdTimezone = "";
-            session.occurenceType = "S";
+            session.occurrenceType = "S";
             session.recurrenceRule = RecurrenceHelper.GenerateObject();
 
             return (session);
